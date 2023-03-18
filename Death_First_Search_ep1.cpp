@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -10,6 +11,44 @@ struct Edge {
     int source, destination;
 };
 
+//ищет кратчайший путь от тукущего положения вируса до гейта (не проверено, не доделано)
+// источник -- https://algorithmica.org/tg/bfs
+
+vector<int> BFS(int n, int si, int ei) {
+    vector<int> distance(n,n);
+     vector<int> p(n, -1); // : у стартовой вершины предок — некоторая несуществующая вершина
+    distance[si] = 0;
+    queue<int> q;
+    q.push(si);
+    // Восстановление пути делается с конца. 
+    // Мы знаем последнюю вершину пути — это ei
+    // Далее, мы сводим задачу к меньшей, переходя к нахождению пути из ei в p(si)
+    while (!q.empty()) {
+        int a = q.front();
+        q.pop();
+        // adjacent — список смежности
+        for (int b : adjacent[v]) {
+            if (distance[b] > distance[a] + 1) {
+                distance[b] = distance[a] + 1;
+                q.push(b);
+            }
+        }
+    }
+    // если пути не существует, возвращаем пустой vector
+    if (distance[ei] == n) {
+        return {};
+    }
+    vector<int> path;
+    while (ei != -1) {
+        path.push_back(ei);
+        ei = p[ei];
+    }
+    
+    // путь был рассмотрен в обратном порядке, поэтому его нужно перевернуть
+    reverse(path.begin(), path.end());
+    return path;
+
+}
 
 
 
@@ -34,6 +73,8 @@ int main()
         int ei; // the index of a gateway node
         cin >> ei; cin.ignore();
     }
+    
+   
 
     // game loop
     while (1) {
@@ -46,7 +87,14 @@ int main()
 
         // Example: 0 1 are the indices of the nodes you wish to sever the link between
         
+        
+        // вызов ф-ии, пррсчитывающей кратчайший путь на каждое движение вируса
+        BFS(n,si,ei);
 
+        // далее делаем так, что блокируется путь от текущей точки в сторону кратчайшего пути
+        // и удаляем этот путь из всех доступных нам, чтоб функция его больше не учитывала
+        
+        
         /*
             hardcode for test 2 
             // cout << "0 2" << endl;
