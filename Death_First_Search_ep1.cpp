@@ -9,9 +9,10 @@ using namespace std;
 // Структура для хранения ребра 
 struct Edge {
     int source, destination;
+    bool is_gateway;
 };
 
-//ищет кратчайший путь от тукущего положения вируса до гейта (не проверено, не доделано)
+//ищет кратчайший путь от текущего положения вируса до гейта (не проверено, не доделано)
 // источник -- https://algorithmica.org/tg/bfs
 
 vector<int> BFS(int n, int si, int ei) {
@@ -67,13 +68,24 @@ int main()
         // cin >> n1 >> n2; cin.ignore(); // способ ввода, который дан изначально
         
         cin >> edges[i].source >> edges[i].destination; cin.ignore();
-    
     }
+    
+    vector<int> gateway(e);
     for (int i = 0; i < e; i++) {
         int ei; // the index of a gateway node
         cin >> ei; cin.ignore();
+        gateway[i] = ei;
     }
     
+    
+    // помечаем ссылки, которые ведут к гейту
+    for (int i = 0; i < n; i++) {
+        for (j = 0; j < e; j++) {
+                eges[i].is_gateway = true;}
+            else {
+                eges[i].is_gateway = false;}
+        }
+    }
    
 
     // game loop
