@@ -26,7 +26,7 @@ vector<int> BFS(int n, int si, int ei) {
     while (!q.empty()) {
         int a = q.front();
         q.pop();
-        // adjacent — список смежности
+        // adjacent — список смежности --- ЗАМЕНИТЬ НА СТРУКТУРУ?
         for (int b : adjacent[a]) {
             if (distance[b] > distance[a] + 1) {
                 distance[b] = distance[a] + 1;
