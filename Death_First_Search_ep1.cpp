@@ -101,15 +101,29 @@ int main()
         // Example: 0 1 are the indices of the nodes you wish to sever the link between
         
         
-        // вызов ф-ии, пррсчитывающей кратчайший путь до каждого из гейтов на каждое движение вируса
+        // вектор с путями, если несколько гейтов
+        vector<vector<int>> paths_to_gateways(e);
+        vector<int> path;
+
+        // вызов ф-ии, пррсчитывающей кратчайший путь до каждого из гейтов на каждое движение вируса + добавляем каждыйпуть в вектор
         for (int i = 0; i < e; i++) {
-         BFS(n,si,gateway[i]);
+            paths_to_gateways[i] = BFS(n,si,gateway[i]);
         }
+        // ищем, к которому из гейтов путь короче
+        for (int i = 1; i < e; i++) {
+            if (paths_to_gateways[i].size() < paths_to_gateways[i-1].size()) {
+                path = paths_to_gateways[i];
+            }
+            else {
+                path = paths_to_gateways[i-1];
+            }
+        }
+
         
       
-        // далее делаем так, что блокируется путь от текущей точки в сторону кратчайшего пути
+        // далее делаем так, что блокируется ребро, прям перед гейтом, по кратчайшему пути
         // и удаляем этот путь из всех доступных нам, чтоб функция его больше не учитывала
-        
+         cout << path[path.size()-2] << " " << path[path.size()-2] << endl;
         
         /*
             hardcode for test 2 
