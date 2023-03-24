@@ -30,11 +30,11 @@ void dfs(int n, vector<vector<int>> adjList, int si, int ei)
                 //save the parent to have the path at the end of the algo.
                 path[i] = curr;
             }
-        }//for
-    }//while
+        }
+    }
      /* t can be anything you want */
     int t = 5;
-    printPath(s, t, path); cout << endl;                                                // не понимаю эту часть - что такое t и зачем тут for и while
+    printPath(s, t, path); cout << endl;                                                // не понимаю эту часть - что такое t 
 }                                                                                       // может быть t это ei ? типа конец пути
 
 // только нам надо сделать не принт весь путь, а только два узла
