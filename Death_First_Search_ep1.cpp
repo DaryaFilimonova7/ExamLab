@@ -22,16 +22,16 @@ void find_closest_gate(int e, vector<vector<int>> paths)
 
 int main()
 {
-    int n; // the total number of nodes in the level, including the gateways
-    int l; // the number of links
-    int e; // the number of exit gateways
+    int n; // общее количество узлов на уровне, включая шлюзы
+    int l; // количество ссылок
+    int e; // количество выходных шлюзов
     cin >> n >> l >> e; cin.ignore();
 
     vector<int> adj[n]; // список смежности вершин графа
 
     for (int i = 0; i < l; i++) 
     {
-        int n1; // N1 and N2 defines a link between these nodes
+        int n1; // N1 и N2 определяют связь между этими узлами
         int n2;
         cin >> n1 >> n2; cin.ignore();
 
@@ -42,16 +42,16 @@ int main()
     vector<int> gateway(e);   // контейнер для гейтов
     for (int i = 0; i < e; i++) 
     {
-        int ei;  //the index of a gateway node
+        int ei;  // индекс узла шлюза
         cin >> ei; cin.ignore();
         gateway[i] = ei;
     }
 
 
-    // game loop
+    // игровой цикл
     while (1) 
     {
-        int si; // The index of the node on which the Bobnet agent is positioned this turn
+        int si; // Индекс узла, на котором находится агент Bobnet в этот ход
         cin >> si; cin.ignore();
 
         vector<vector<int>> paths;
