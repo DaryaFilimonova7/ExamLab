@@ -2,7 +2,6 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
-#include <list>
 
 
 using namespace std;
@@ -27,8 +26,7 @@ int main()
     int e; // the number of exit gateways
     cin >> n >> l >> e; cin.ignore();
 
-    // list<int> adj_list[n];  //create an array of lists whose size is n
-    vector<int> adj[n];
+    vector<int> adj[n]; // список смежности вершин графа
 
     for (int i = 0; i < l; i++) {
         int n1; // N1 and N2 defines a link between these nodes
@@ -39,9 +37,9 @@ int main()
         adj[n2].push_back(n1);
     }
 
-    vector<int> gateway(e);
+    vector<int> gateway(e);   // контейнер для гейтов
     for (int i = 0; i < e; i++) {
-        int ei; // the index of a gateway node
+        int ei;  //the index of a gateway node
         cin >> ei; cin.ignore();
         gateway[i] = ei;
     }
@@ -54,7 +52,8 @@ int main()
 
         vector<vector<int>> paths;
 
-        // вызов ф-ии, пррсчитывающей кратчайший путь до каждого из гейтов на каждое движение вируса
+        
+        // вызов ф-ии, просчитывающей кратчайший путь до каждого из гейтов на текущее положение вируса
         for (int i = 0; i < e; i++) {
             int visited[n] ={0};
             int distance[n];
@@ -80,12 +79,6 @@ int main()
                 }
             }
 
-            /*
-            for (int j =0; j<n; j++) {
-                cout << distance[j] << " ";  кратчайший путь до каждой вершины
-            }
-             */
-
             // path to destination
             int x = gateway[i];
             vector<int> path;
@@ -98,11 +91,9 @@ int main()
 
         }
 
-        // далее делаем так, что блокируется путь от текущей точки в сторону кратчайшего пути
+        
+        //  определяем ближайший гейт и блокируем путь
         find_closest_gate(e, paths);
-
-
-        // и удаляем этот путь из всех доступных нам, чтоб функция его больше не учитывала
 
     }
 
