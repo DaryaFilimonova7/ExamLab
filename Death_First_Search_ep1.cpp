@@ -11,7 +11,8 @@ void find_closest_gate(int e, vector<vector<int>> paths)
 {
     int index = 0; // индекс пути к ближайшему гейту
     int min = paths[0].size();
-    for (int j = 0; j < e; j++) {
+    for (int j = 0; j < e; j++) 
+    {
         if (paths[j].size() < min) { min = paths[j].size(); index = j; }
     }
     // блокируем ребро от текущего положения вируса до следующего в сторону короткого пути
@@ -28,7 +29,8 @@ int main()
 
     vector<int> adj[n]; // список смежности вершин графа
 
-    for (int i = 0; i < l; i++) {
+    for (int i = 0; i < l; i++) 
+    {
         int n1; // N1 and N2 defines a link between these nodes
         int n2;
         cin >> n1 >> n2; cin.ignore();
@@ -38,7 +40,8 @@ int main()
     }
 
     vector<int> gateway(e);   // контейнер для гейтов
-    for (int i = 0; i < e; i++) {
+    for (int i = 0; i < e; i++) 
+    {
         int ei;  //the index of a gateway node
         cin >> ei; cin.ignore();
         gateway[i] = ei;
@@ -46,7 +49,8 @@ int main()
 
 
     // game loop
-    while (1) {
+    while (1) 
+    {
         int si; // The index of the node on which the Bobnet agent is positioned this turn
         cin >> si; cin.ignore();
 
@@ -54,7 +58,8 @@ int main()
 
         
         // вызов ф-ии, просчитывающей кратчайший путь до каждого из гейтов на текущее положение вируса
-        for (int i = 0; i < e; i++) {
+        for (int i = 0; i < e; i++) 
+        {
             int visited[n] ={0};
             int distance[n];
             int parent[n];
@@ -69,8 +74,10 @@ int main()
                 int v = q.front();
                 q.pop();
 
-                for(int u: adj[v]) {
-                    if (!visited[u]) {
+                for(int u: adj[v]) 
+                {
+                    if (!visited[u]) 
+                    {
                         visited[u] =1;
                         q.push(u);
                         distance[u] = distance[v]+1;  // coming from v to u
@@ -82,13 +89,13 @@ int main()
             // path to destination
             int x = gateway[i];
             vector<int> path;
-            while (x != -1) {
+            while (x != -1) 
+            {
                 path.push_back(x);
                 x = parent[x];
             }
             reverse(path.begin(), path.end());
             paths.push_back(path);
-
         }
 
         
