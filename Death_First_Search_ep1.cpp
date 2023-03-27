@@ -62,9 +62,9 @@ int main()
         {
             int visited[n] ={0};
             int distance[n];
-            int parent[n];
+            int parent[n]; // хранит предшествующие вершины
             visited[si] =1;
-            distance[si] =0;
+            distance[si] =0; // хранит дистанции
             parent[si]= -1;
             queue<int> q;
             q.push(si);
@@ -80,7 +80,7 @@ int main()
                     {
                         visited[u] =1;
                         q.push(u);
-                        distance[u] = distance[v]+1;  // coming from v to u
+                        distance[u] = distance[v]+1;  // идет от v (из очереди) до u (до каждого элемента adj)
                         parent[u] = v;
                     }
                 }
