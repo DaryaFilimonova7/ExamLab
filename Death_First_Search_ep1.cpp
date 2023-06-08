@@ -1,3 +1,8 @@
+//---------------------------------------------//
+// Codingame: Death First Search Ep.1 solution //
+//---------------------------------------------//
+
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
